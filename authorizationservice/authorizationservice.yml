@@ -15,29 +15,26 @@ spring:
     testWhileIdle: "true"
     validationQuery: "SELECT 1"
     
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://54.235.233.109:8901/user
     
 server:
-  port: 8081
-
+  port: 8901
+  
 eureka:
   instance:
-    perferIpAddress: true
+    preferIpAddress: true
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://54.235.233.109:8761/eureka/
-
-security:
- oauth2:
-  resource:
-    userInfoUri: http://54.235.233.109:8901/user
-    
+      defaultZone: http://54.235.233.109:8761/eureka
+      
 signing:
   key: 345345fsdgsf5345
-  
-logging:
-  level:
-    com.netflix: WARN
-    org.springframework.web: WARN
-    com.itemsharing: DEBUG
+
+management:
+  security:
+    enabled: false

@@ -7,16 +7,33 @@ spring:
       hibernate:
         dialect: "org.hibernate.dialect.MySQL5Dialect"
   database:
-    driverClassname: "com.mysql.jdbc.driver"
+    driverClassName: "com.mysql.jdbc.Driver"
   datasource:
-    url: "jdbc:mysql://localhost:3306/sharingitems"
+    url: "jdbc:mysql://mysql-aws.c4v3j9tgecmv.us-east-1.rds.amazonaws.com:3306/itemsharingdatabase"
     username: "root"
-    password: "{cipher}bee1410e337f3c8a4d5d98004a0e2534f38501f6dcb624fd1895bceed9b6dfa0"
+    password: "{cipher}de8a2140acf533afcd9e1ee6f9156226581120ed6b49187e376694db634b7bad"
     testWhileIdle: "true"
     validationQuery: "SELECT 1"
 
-security:
-  basic:
-    enabled: false
 server:
   port: 8082
+
+eureka:
+  instance:
+    perferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://54.235.233.109:8761/eureka/
+
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.itemsharing: DEBUG
+
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://54.235.233.109:8901/user
